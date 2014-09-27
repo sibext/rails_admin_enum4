@@ -1,0 +1,10 @@
+.btn-group{"data-toggle" => "buttons"}
+  - field.values.each do |v|
+    - if field.form_value == v[1]
+      %label.btn.btn-primary.active
+        = form.radio_button field.method_name, v[0], checked: true
+        = t "enum.values.#{v[0]}"
+    - else
+      %label.btn.btn-primary
+        = form.radio_button field.method_name, v[0]
+        = t "enum.values.#{v[0]}"
