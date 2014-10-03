@@ -20,11 +20,11 @@ Usage
 
 Generate new model by generator:
 
-  rails g model Sibext service:integer
+    rails g model Sibext service:integer
 
 Execute migration:
 
-  rake db:migrate
+    rake db:migrate
 
 Add enum to your model:
 
