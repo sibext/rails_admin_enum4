@@ -10,7 +10,7 @@ Rails Admin plugin for correct view Rails 4.1 Enum
 Installation
 ------------
 
-    gem 'rails-admin-enum4'
+    gem 'rails_admin_enum4', githab: 'rails-admin-enum4'
 
     bundle install
 
