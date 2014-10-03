@@ -28,9 +28,9 @@ module RailsAdmin
 
           register_instance_option :pretty_value do
             if value
-              I18n::t "enum.values.#{values.keys[value]}"
+              I18n::t "enum.values.#{values.keys[value]}", default: values.keys[value].capitalize
             else
-              I18n::t "enum.none"
+              I18n::t "enum.none", default: 'None'
             end
           end
 
@@ -50,13 +50,12 @@ RailsAdmin::Config::Fields.register_factory do |parent, properties, fields|
   puts "#{model} >>>>> #{properties.type} #{properties.name} #{method_name}\n"
 
   if (not properties.name.to_s.eql? 'id') && \
-     properties.type.to_s.eql?('integer') &&
-     !Object.respond_to?(method_name) && \
-      (model.respond_to?(method_name) || \
-          model.method_defined?(method_name))
-     fields << RailsAdmin::Config::Fields::Types::Enum4.new(parent, properties.name, properties)
+      properties.type.to_s.eql?('integer') &&
+      !Object.respond_to?(method_name) && \
+      model.respond_to?(method_name)
+    fields << RailsAdmin::Config::Fields::Types::Enum4.new(parent, properties.name, properties)
     puts "ADDED"
-     true
+    true
   else
     false
   end
