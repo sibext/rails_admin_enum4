@@ -28,7 +28,8 @@ module RailsAdmin
 
           register_instance_option :pretty_value do
             if value
-              I18n::t "enum.values.#{values.keys[value]}", default: values.keys[value].split('_').collect(&:capitalize).join(' ')
+              value_name = values.invert[value]
+              I18n::t "enum.values.#{value_name}", default: value_name.split('_').collect(&:capitalize).join(' ')
             else
               I18n::t "enum.none", default: 'None'
             end
