@@ -48,14 +48,12 @@ end
 RailsAdmin::Config::Fields.register_factory do |parent, properties, fields|
   model = parent.abstract_model.model
   method_name = RailsAdmin::Config::Fields::Types::Enum4::data_for_name properties.name
-  puts "#{model} >>>>> #{properties.type} #{properties.name} #{method_name}\n"
 
   if (not properties.name.to_s.eql? 'id') && \
       properties.type.to_s.eql?('integer') &&
       !Object.respond_to?(method_name) && \
       model.respond_to?(method_name)
     fields << RailsAdmin::Config::Fields::Types::Enum4.new(parent, properties.name, properties)
-    puts "ADDED"
     true
   else
     false
